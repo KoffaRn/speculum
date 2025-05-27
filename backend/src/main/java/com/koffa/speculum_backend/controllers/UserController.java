@@ -1,8 +1,7 @@
 package com.koffa.speculum_backend.controllers;
 
 import com.koffa.speculum_backend.entities.user.User;
-import com.koffa.speculum_backend.entities.user.UserResponse;
-import com.koffa.speculum_backend.services.UserServiceImpl;
+import com.koffa.speculum_backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserController {
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
     @QueryMapping
     public UserResponse users() {
         return userService.findAll();
