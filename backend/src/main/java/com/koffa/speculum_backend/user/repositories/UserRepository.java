@@ -1,4 +1,4 @@
-package com.koffa.speculum_backend.user;
+package com.koffa.speculum_backend.user.repositories;
 
 import com.koffa.speculum_backend.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

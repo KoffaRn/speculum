@@ -1,6 +1,6 @@
 package com.koffa.speculum_backend.user.service;
 
-import com.koffa.speculum_backend.user.UserRepository;
+import com.koffa.speculum_backend.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,5 +24,8 @@ public class UserService implements UserDetailsService {
                 user.getPassword(),
                 Collections.singleton(user::getRole)
         );
+    }
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 }

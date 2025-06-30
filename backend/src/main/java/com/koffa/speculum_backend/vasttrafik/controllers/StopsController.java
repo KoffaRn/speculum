@@ -26,6 +26,7 @@ public class StopsController {
         headers.setBearerAuth(tokenService.getToken());
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         String url = "https://ext-api.vasttrafik.se/pr/v4/locations/by-text?q=" + q;
-        return restTemplate.exchange(url, HttpMethod.GET, entity, LocationResponse.class);
+        ResponseEntity<LocationResponse> response = restTemplate.exchange(url, HttpMethod.GET, entity, LocationResponse.class);
+        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 }

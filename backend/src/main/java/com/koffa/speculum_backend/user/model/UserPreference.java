@@ -7,18 +7,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Entity
+@Embeddable
 public class UserPreference {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
     @Embedded
     private Place home;
     @ElementCollection
     @CollectionTable(name = "favorite_places", joinColumns = @JoinColumn(name = "user_pref_id"))
-    private List<Place> favoritePlaces;
-
-}
+    private List<Place> favoritePlaces;}

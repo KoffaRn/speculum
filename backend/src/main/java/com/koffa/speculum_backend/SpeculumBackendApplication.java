@@ -1,6 +1,6 @@
 package com.koffa.speculum_backend;
 
-import com.koffa.speculum_backend.user.UserRepository;
+import com.koffa.speculum_backend.user.repositories.UserRepository;
 import com.koffa.speculum_backend.user.model.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

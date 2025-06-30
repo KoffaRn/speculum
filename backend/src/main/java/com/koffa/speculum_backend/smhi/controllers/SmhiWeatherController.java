@@ -20,6 +20,7 @@ public class SmhiWeatherController {
     @GetMapping("/forecast")
     public ResponseEntity<WeatherForecast> getForecast(@RequestParam double lat, @RequestParam double lon) {
         String url = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + lon + "/lat/ " + lat + "/data.json";
-        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Void>(new HttpHeaders()), WeatherForecast.class);
+        ResponseEntity<WeatherForecast> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Void>(new HttpHeaders()), WeatherForecast.class);
+        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 }

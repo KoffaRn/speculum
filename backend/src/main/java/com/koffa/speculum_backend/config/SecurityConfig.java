@@ -30,18 +30,19 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // For development only
+                .cors(cors -> {})
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/public/**", "/api/auth/**").permitAll()
-
+                        .requestMatchers("/api/auth/**", "/api/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .userDetailsService(userService)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .httpBasic(Customizer.withDefaults()); // You can use formLogin() or JWT instead
+                .httpBasic(Customizer.withDefaults());
+
         return http.build();
     }
 }
