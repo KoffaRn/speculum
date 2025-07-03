@@ -47,7 +47,6 @@ public class JourneyController {
 
         ArrayList<LegDTO> legs = new ArrayList<>();
         if(response.getBody() != null) {
-            System.out.println(response.getBody());
             String jsonString = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             try {
